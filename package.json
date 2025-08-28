@@ -1,6 +1,6 @@
 {
   "name": "gamehubz",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A unified game library manager for all your gaming platforms",
   "author": "Alexis Debesset",
   "homepage": "https://gamehubz.net",
@@ -90,7 +90,6 @@
     "buildDependenciesFromSource": false,
     "nodeGypRebuild": false,
     "forceCodeSigning": false,
-    "afterSign": false,
     "nsis": {
       "oneClick": false,
       "allowElevation": true,
@@ -105,9 +104,7 @@
       "installerHeaderIcon": "assets/icon.ico",
       "deleteAppDataOnUninstall": true,
       "runAfterFinish": true,
-      "warningsAsErrors": false,
-      "allowElevation": true,
-      "requestExecutionLevel": "user"
+      "warningsAsErrors": false
     }
   },
   "devDependencies": {

@@ -827,6 +827,55 @@ function setupSearch() { const inp = document.getElementById('search-input'); if
 function setupSort() { const sel = document.getElementById('sort-select'); if (sel) sel.onchange = sortAndRender; }
 function setupViewToggle() { const grid = document.getElementById('grid-button'); const list = document.getElementById('list-button'); if (grid) grid.onclick = () => setView('grid'); if (list) list.onclick = () => setView('list'); }
 
+// ————— Ajustement taille des cards ——————————
+function setupCardSizeControls() {
+  const sizeButtons = document.querySelectorAll('.size-btn');
+  const gameContainer = document.getElementById('game-container');
+  
+  if (!sizeButtons.length || !gameContainer) return;
+  
+  // Charger la préférence sauvegardée
+  const savedSize = localStorage.getItem('cardSize') || '220';
+  setCardSize(parseInt(savedSize));
+  
+  // Mettre à jour le bouton actif selon la taille sauvegardée
+  sizeButtons.forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.dataset.size === savedSize) {
+      btn.classList.add('active');
+    }
+  });
+  
+  // Gérer les clics sur les boutons
+  sizeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const newSize = parseInt(btn.dataset.size);
+      
+      // Mettre à jour les boutons actifs
+      sizeButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Appliquer la nouvelle taille
+      setCardSize(newSize);
+      
+      // Sauvegarder la préférence
+      localStorage.setItem('cardSize', newSize.toString());
+      
+      console.log(`[CARDS] Taille changée: ${newSize}px`);
+    });
+  });
+}
+
+function setCardSize(size) {
+  const root = document.documentElement;
+  root.style.setProperty('--card-w', `${size}px`);
+  
+  // Ajuster aussi la hauteur proportionnellement pour garder de belles proportions
+  const aspectRatio = 1.4; // ratio hauteur/largeur
+  const cardHeight = size * aspectRatio;
+  root.style.setProperty('--card-h', `${cardHeight}px`);
+}
+
 // ————— Mise à jour ——————————
 function setupUpdate() {
   const btn = document.getElementById('update-button');
@@ -1202,6 +1251,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setupViewToggle();
   setupRefresh();
   setupUpdate();
+  setupCardSizeControls();
   setupPlatformFilterScroll();
 
   // Data

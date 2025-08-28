@@ -81,6 +81,38 @@ header select {
     border: none;
 }
 
+/* Card size controls */
+.card-size-controls {
+    display: flex;
+    background-color: rgb(19, 19, 19);
+    border-radius: 5px;
+    padding: 2px;
+    margin: 2.5px;
+    gap: 2px;
+}
+
+.size-btn {
+    background-color: rgb(39, 39, 39);
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 28px;
+}
+
+.size-btn:hover {
+    background-color: #da681c;
+}
+
+.size-btn.active {
+    background-color: #da681c;
+    color: #fff;
+}
+
 .platformfilter {
     display: flex;
     flex-direction: row;

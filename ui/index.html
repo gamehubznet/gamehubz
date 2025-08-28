@@ -63,6 +63,15 @@
           <button id="refresh-button" class="scan" type="button" data-i18n="button.scan">Start scan</button>
           <input type="text" placeholder="Search games..." id="search-input" aria-label="Search games"
             data-i18n-placeholder="search.placeholder" />
+          
+          <!-- Card size controls -->
+          <div class="card-size-controls">
+            <button type="button" class="size-btn" id="size-small" data-size="150" title="Small cards">S</button>
+            <button type="button" class="size-btn active" id="size-medium" data-size="220" title="Medium cards">M</button>
+            <button type="button" class="size-btn" id="size-large" data-size="300" title="Large cards">L</button>
+            <button type="button" class="size-btn" id="size-xl" data-size="400" title="Extra Large cards">XL</button>
+          </div>
+
           <button type="button" class="listview active" id="grid-button" aria-label="Grid view">
             <img src="img/icon-grid.png" alt="Grid View" /></button>
           <button type="button" class="listview" id="list-button" aria-label="List view">
