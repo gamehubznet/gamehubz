@@ -1,0 +1,166 @@
+header {
+    background-color: rgb(24, 24, 24);
+    left: 340px;
+    width: 100%;
+    position: fixed;
+    padding: 10px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+}
+
+.scan {
+    background-color: rgb(39, 39, 39);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.scan:hover {
+    background-color: #da681c;
+}
+
+
+.listview {
+    background-color: rgb(39, 39, 39);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 800;
+    font-size: medium;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 2.5px;
+    transition: all 0.3s ease;
+}
+
+.listview:hover {
+    background-color: #da681c;
+}
+
+.listview img {
+    width: 15px;
+    height: 15px;
+}
+
+header input {
+    background-color: rgb(39, 39, 39);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px;
+    margin-right: 2.5px;
+    width: 300px;
+    transition: all 0.3s ease
+}
+
+header label {
+    margin: 5px 10px 5px 5px;
+}
+
+header select {
+    height: 35px;
+    border-radius: 5px;
+    background-color: rgb(39, 39, 39);
+    color: #fff;
+    padding: 5px;
+    border: none;
+}
+
+.platformfilter {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(19, 19, 19);
+    left: 340px;
+    top: 65px;
+    right: 0;
+    position: fixed;
+    padding: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    /* défilement agréable */
+}
+
+/* pour Webkit (Chrome/Edge/Safari) : styliser la scrollbar */
+.platformfilter::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-btn {
+    flex: 0 0 auto;
+    /* empêche les boutons de rétrécir */
+    background-color: rgb(39, 39, 39);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px;
+    cursor: pointer;
+    margin: 5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-wrap: nowrap;
+}
+
+.filter-btn:hover {
+    background-color: #da681c;
+}
+
+.filter-btn:active {
+    background-color: #da681c;
+}
+
+
+
+/* Bouton actif */
+.filter-btn.active {
+    background-color: #da681c;
+    /* orange comme au hover */
+    color: #fff;
+}
+
+.listview.active {
+    background-color: #da681c;
+    /* orange comme au hover */
+    color: #fff;
+}
+
+.filter-btn img {
+    width: auto;
+    height: 20px;
+    padding-right: 5px;
+}
+
+/* layering propre */
+header {
+    z-index: 60;
+}
+
+.platformfilter {
+    z-index: 50;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, .35);
+}
+
+/* évite le double scroll global (le wrapper gère le scroll) */
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    background: rgb(24, 24, 24);
+}

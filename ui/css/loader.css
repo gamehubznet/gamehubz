@@ -1,0 +1,151 @@
+/* Overlay plein écran */
+#loader {
+  position: fixed;
+  inset: 0;
+  display: flex;              /* centre le spinner */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.795);
+  z-index: 99999;             /* au-dessus de tout */
+  pointer-events: all;
+  opacity: 1;
+  backdrop-filter: blur(4px);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Etat caché contrôlé par JS */
+#loader.hidden {
+  display: none !important;
+}
+
+/* Spinner simple */
+#loader .spinner {
+  width: 56px;
+  height: 56px;
+  border: 6px solid #ddd;
+  border-top-color: #da681c;
+  border-radius: 50%;
+  animation: ghz-spin 1s linear infinite;
+  margin-bottom: 24px;
+}
+
+/* Conteneur des informations de progression */
+.progress-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Texte principal du loader */
+#loader-text {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: white;
+}
+
+/* Nom de la plateforme en cours de scan */
+.progress-platform {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: #da681c;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+/* Conteneur de la barre de progression */
+.progress-bar-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* Arrière-plan de la barre de progression */
+.progress-bar-background {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Barre de progression elle-même */
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #da681c 0%, #ff8c42 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animation de progression */
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    transparent 100%
+  );
+  animation: progress-shine 2s ease-in-out infinite;
+}
+
+@keyframes progress-shine {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+/* Pourcentage affiché */
+.progress-percentage {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  min-width: 48px;
+  text-align: right;
+}
+
+/* Compteur de jeux trouvés */
+.progress-count {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 8px;
+}
+
+@keyframes ghz-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Animation d'apparition progressive */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.progress-info > * {
+  animation: fadeInUp 0.5s ease-out;
+}

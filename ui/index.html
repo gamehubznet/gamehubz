@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameHUBZ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/topbar.css">
+  <link rel="stylesheet" href="css/container.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <link rel="stylesheet" href="css/loader.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+    <!-- Loader overlay -->
+    <div id="loader" class="hidden" aria-live="polite" aria-busy="true">
+      <div class="spinner" role="status" aria-label="Loading"></div>
+      <div class="progress-info">
+        <p id="loader-text">Scanning libraries</p>
+        <div id="progress-platform" class="progress-platform">Initializing...</div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-background">
+            <div id="progress-bar" class="progress-bar"></div>
+          </div>
+          <span id="progress-text" class="progress-percentage">0%</span>
+        </div>
+        <div id="progress-count" class="progress-count">0 games found</div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main">
+      <div>
+        <img src="img/logo/logo-text-color.png" id="logo" alt="GameHubZ Logo" />
+        <p>Play. Centralise. Breathe.</p>
+      </div>
+
+      <div id="main-menu">
+        <button type="button" id="nav-library" data-filter="all" aria-current="page">
+          <img src="img/icon-all.png" alt="Library" />Library
+        </button>
+      </div>
+
+      <div id="sidebar-bottom">
+        <button type="button" id="update-button" class="sidebar-update" title="Check for updates">
+          🔄 Check for Updates
+        </button>
+      </div>
+    </aside>
+
+    <main id="content">
+      <header>
+        <div class="topbar">
+          <button id="refresh-button" class="scan" type="button" data-i18n="button.scan">Start scan</button>
+          <input type="text" placeholder="Search games..." id="search-input" aria-label="Search games"
+            data-i18n-placeholder="search.placeholder" />
+          <button type="button" class="listview active" id="grid-button" aria-label="Grid view">
+            <img src="img/icon-grid.png" alt="Grid View" /></button>
+          <button type="button" class="listview" id="list-button" aria-label="List view">
+            <img src="img/icon-list.png" alt="List View" />
+          </button>
+          <label for="sort-select" class="sr-only">Sort</label>
+          <select class="sort-select" id="sort-select" aria-label="Sort games">
+            <option value="AZ">A &gt; Z</option>
+            <option value="ZA">Z &gt; A</option>
+          </select>
+        </div>
+      </header>
+
+      <section id="library-page" aria-label="Game library">
+        <div class="platformfilter" role="tablist" aria-label="Platform filters">
+          <button type="button" class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+            <img src="img/icon-all.png" alt="All" />All
+          </button>
+          <button type="button" class="filter-btn" data-filter="favorites" role="tab" aria-selected="false">
+            <img src="img/icon-fav.png" alt="Favorites" />Favorites
+          </button>
+          <button type="button" class="filter-btn" data-filter="steam" role="tab" aria-selected="false">
+            <img src="img/icon-steam.png" alt="Steam" />Steam
+          </button>
+          <button type="button" class="filter-btn" data-filter="epic" role="tab" aria-selected="false">
+            <img src="img/icon-epic.png" alt="Epic" />Epic Games Store
+          </button>
+          <button type="button" class="filter-btn" data-filter="gog" role="tab" aria-selected="false">
+            <img src="img/icon-gog.png" alt="GOG" />GOG Galaxy
+          </button>
+          <button type="button" class="filter-btn" data-filter="ea" role="tab" aria-selected="false">
+            <img src="img/icon-ea.png" alt="EA" />Electronic Arts
+          </button>
+          <button type="button" class="filter-btn" data-filter="ubi" role="tab" aria-selected="false">
+            <img src="img/icon-ubi.png" alt="Ubisoft" />Ubisoft Connect
+          </button>
+          <button type="button" class="filter-btn" data-filter="mstore" role="tab" aria-selected="false">
+            <img src="img/icon-mstore.png" alt="Microsoft" />Microsoft Store
+          </button>
+          <button type="button" class="filter-btn" data-filter="riot" role="tab" aria-selected="false">
+            <img src="img/icon-riot.png" alt="Riot" />Riot Games
+          </button>
+          <button type="button" class="filter-btn" data-filter="bnet" role="tab" aria-selected="false">
+            <img src="img/icon-bnet.png" alt="Battle.net" />Battle.net
+          </button>
+          <button type="button" class="filter-btn" data-filter="starcitizen" role="tab" aria-selected="false">
+            <img src="img/icon-starcitizen.png" alt="Star Citizen" />Cloud Imperium
+          </button>
+          <button type="button" class="filter-btn" data-filter="rockstar" role="tab" aria-selected="false">
+            <img src="img/icon-rockstar.png" alt="Rockstar" />Rockstar Games
+          </button>
+        </div>
+
+        <div id="game-container-wrapper">
+          <div id="progress-indicator" class="hidden" aria-live="polite">Loading games...</div>
+          <div id="game-container" class="content-container"></div>
+        </div>
+      </section>
+
+      <!-- Toast Notification -->
+      <div id="toast" class="hidden" role="status" aria-live="polite">
+        <span id="toast-message"></span>
+      </div>
+
+      <script src="renderer.js" defer></script>
+  </div>
+</body>
+
+</html>

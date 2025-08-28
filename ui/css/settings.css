@@ -1,0 +1,171 @@
+/* Drawer overlay */
+.settings {
+    position: fixed;
+    inset: 0;
+    z-index: 99998;
+    backdrop-filter: blur(4px);
+}
+
+.settings.hidden {
+    display: none;
+}
+
+.settings-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+}
+
+
+/* Drawer */
+.settings-drawer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(520px, 95vw);
+    background: var(--bg, #101214);
+    color: var(--fg, #fff);
+    box-shadow: -8px 0 24px rgba(0, 0, 0, .35);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    transform: translateX(8px);
+    opacity: 0;
+    animation: settings-in .18s ease forwards;
+}
+
+@keyframes settings-in {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+.settings-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.settings-close {
+    margin-left: auto;
+    background: transparent;
+    border: 0;
+    font-size: 18px;
+    cursor: pointer;
+    color: inherit;
+}
+
+
+.settings-content {
+    padding: 16px 20px;
+    overflow: auto;
+}
+
+.settings-section+.settings-section {
+    margin-top: 24px;
+}
+
+.settings-section h3 {
+    font-size: 14px;
+    font-weight: 600;
+    opacity: .8;
+    margin: 0 0 12px;
+}
+
+
+.field {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.field label {
+    font-size: 13px;
+    opacity: .8;
+}
+
+
+.segmented {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+}
+
+.segmented input {
+    display: none;
+}
+
+.segmented label {
+    text-align: center;
+    padding: 8px 10px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.segmented input:checked+label {
+    border-color: hsl(var(--accent-h, 146) var(--accent-s, 60%) var(--accent-l, 50%));
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, .06) inset;
+}
+
+
+.hue-row {
+    display: grid;
+    grid-template-columns: 1fr auto 28px;
+    align-items: center;
+    gap: 10px;
+}
+
+#accent-hue {
+    width: 100%;
+}
+
+#accent-swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, .2);
+}
+
+
+.settings-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-top: 1px solid rgba(255, 255, 255, .06);
+}
+
+.settings-footer .spacer {
+    flex: 1;
+}
+
+.settings-footer button {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+
+.settings-footer button.primary {
+    border-color: hsl(var(--accent-h, 146) var(--accent-s, 60%) var(--accent-l, 50%));
+}
+
+
+/* Thème clair optionnel (si tu ajoutes [data-theme="light"] sur <html> ou <body>) */
+:root[data-theme="light"] .settings-drawer {
+    --bg: #ffffff;
+    --fg: #0b0d0e;
+}
