@@ -1,0 +1,108 @@
+# Configuration avancée pour electron-builder
+appId: com.gamehubz.gamehubz
+productName: GameHUBZ
+copyright: Copyright © 2024 GameHUBZ
+
+directories:
+  output: installer-dist
+  buildResources: assets
+
+files:
+  - ui/**/*
+  - scanner/**/*
+  - assets/**/*
+  - package.json
+  # Exclure les fichiers inutiles - pas besoin de node_modules en production
+  - '!ui/cache/**/*'
+  - '!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}'
+  - '!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}'
+  - '!**/node_modules/*.d.ts'
+  - '!**/node_modules/.bin'
+  - '!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}'
+  - '!.editorconfig'
+  - '!**/._*'
+  - '!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}'
+  - '!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}'
+  - '!**/{appveyor.yml,.travis.yml,circle.yml}'
+  - '!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}'
+  - '!**/build'
+  - '!**/dist'
+  - '!**/installer-dist'
+
+extraFiles:
+  - from: scanner/scan_all.exe
+    to: scanner/scan_all.exe
+    filter:
+      - '**/*'
+
+# Configuration Windows
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: assets/icon.ico
+  artifactName: '${productName}-Setup-${version}.${ext}'
+  publisherName: GameHUBZ
+  requestedExecutionLevel: asInvoker
+  signAndEditExecutable: false
+
+# Optimisations de taille
+asarUnpack:
+  - '**/*.{node,dll}'
+
+# Limiter les locales pour réduire la taille
+electronLanguages: 
+  - en-US
+  - fr
+
+# Configuration NSIS (Installateur Windows)
+nsis:
+  oneClick: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: GameHUBZ
+  uninstallDisplayName: 'GameHUBZ - Game Library Manager'
+  license: false
+  installerIcon: assets/icon.ico
+  uninstallerIcon: assets/icon.ico
+  installerHeaderIcon: assets/icon.ico
+  deleteAppDataOnUninstall: true
+  runAfterFinish: true
+  menuCategory: true
+  
+  # Messages personnalisés de l'installateur
+  guid: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890'
+  displayLanguageSelector: false
+  language: 1033  # English (US)
+  
+  # Script NSIS personnalisé (optionnel)
+  include: |
+    !macro customInstall
+      ; Créer un dossier pour les données utilisateur
+      SetOutPath "$APPDATA\GameHUBZ"
+      CreateDirectory "$APPDATA\GameHUBZ\cache"
+    !macroend
+    
+    !macro customUnInstall
+      ; Nettoyer les données utilisateur si désiré
+      RMDir /r "$APPDATA\GameHUBZ\cache"
+    !macroend
+
+# Compression et optimisation
+compression: maximum
+electronDist: node_modules/electron/dist
+electronVersion: 29.0.0
+
+# Optimisations supplémentaires
+buildDependenciesFromSource: false
+nodeGypRebuild: false
+
+# Métadonnées
+metadata:
+  name: gamehubz
+  description: A unified game library manager for all your gaming platforms
+  author: GameHUBZ
+  version: 1.0.0

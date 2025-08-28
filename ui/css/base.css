@@ -1,0 +1,29 @@
+:root {
+  font-family: poppins, sans-serif;
+  color: white;
+  --scrollbar-size: 8px;
+  --scrollbar-track: #181818;   /* fond sombre comme l’app */
+  --scrollbar-thumb: #ff8a48;   /* orange de la topbar */
+}
+
+html {
+  width: 100%;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(15, 15, 15);
+}
+
+/* -------- Cacher toutes les scrollbars -------- */
+
+/* Chrome / Edge / Safari */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+html, body, * {
+  scrollbar-width: none; /* supprime l’affichage */
+}

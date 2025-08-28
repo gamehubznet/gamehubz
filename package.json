@@ -1,0 +1,121 @@
+{
+  "name": "gamehubz",
+  "version": "0.2.1",
+  "description": "A unified game library manager for all your gaming platforms",
+  "author": "Alexis Debesset",
+  "homepage": "https://gamehubz.net",
+  "main": "ui/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build-scanner": "python -m PyInstaller --onefile scanner/unified_scanner.py --noconfirm --distpath . && move /Y unified_scanner.exe scanner\\",
+    "obfuscate-dist": "node obfuscate-dist.js",
+    "dist": "npm run build-scanner && electron-packager . GameHubZ --overwrite --asar=false --platform=win32 --arch=x64 --out=dist --icon=assets/icon.ico && npm run obfuscate-dist",
+    "build-app": "npm run build-scanner && electron-builder --win",
+    "build-installer": "node build-installer.js",
+    "build-all": "npm run build-installer",
+    "publish": "node publish-release.js"
+  },
+  "build": {
+    "appId": "com.gamehubz.gamehubz",
+    "productName": "GameHUBZ",
+    "copyright": "Copyright © 2025 GameHUBZ",
+    "asar": false,
+    "directories": {
+      "output": "installer-dist"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "gamehubznet",
+        "repo": "gamehubz",
+        "private": true
+      }
+    ],
+    "files": [
+      "ui/**/*",
+      "scanner/**/*",
+      "assets/**/*",
+      "package.json",
+      "!ui/cache/**/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}",
+      "!**/build",
+      "!**/dist",
+      "!**/installer-dist"
+    ],
+    "extraResources": [
+      {
+        "from": "scanner/scan_all.exe",
+        "to": "scanner/scan_all.exe"
+      },
+      {
+        "from": "ui/img/",
+        "to": "ui/img/"
+      },
+      {
+        "from": "assets/",
+        "to": "assets/"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "artifactName": "${productName}-Setup-${version}.${ext}",
+      "publisherName": "GameHUBZ"
+    },
+    "asarUnpack": [
+      "**/*.{node,dll}"
+    ],
+    "electronLanguages": [
+      "en-US",
+      "fr"
+    ],
+    "compression": "maximum",
+    "buildDependenciesFromSource": false,
+    "nodeGypRebuild": false,
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "GameHUBZ",
+      "uninstallDisplayName": "GameHUBZ - Game Library Manager",
+      "license": false,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "deleteAppDataOnUninstall": true,
+      "runAfterFinish": true
+    }
+  },
+  "devDependencies": {
+    "asar": "^3.2.0",
+    "electron": "^29.0.0",
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2",
+    "javascript-obfuscator": "^4.1.1",
+    "rimraf": "^6.0.1",
+    "vdf": "0.0.2"
+  },
+  "dependencies": {
+    "electron-log": "^5.4.3",
+    "electron-updater": "^6.6.2"
+  }
+}

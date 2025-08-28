@@ -1,0 +1,54 @@
+aside {
+    width: 300px;
+    background-color: rgb(24, 24, 24);
+    padding: 20px;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+}
+
+aside #logo {
+    height: 100px;
+    display: block;
+    margin: auto;
+}
+
+aside p {
+    text-align: center;
+}
+
+aside button {
+    background-color: rgb(39, 39, 39);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 20px 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+
+aside button:hover {
+    background-color: #da681c;
+}
+
+aside button:active {
+    background-color: #da681c;
+}
+
+aside button img {
+    width: 30px;
+    padding-right: 10px;
+}
+
+#sidebar-bottom {
+    width: 300px;
+    bottom: 10px;
+    position: fixed;
+}
