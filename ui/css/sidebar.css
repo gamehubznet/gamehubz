@@ -51,4 +51,31 @@ aside button img {
     width: 300px;
     bottom: 10px;
     position: fixed;
+    padding: 0 20px;
+}
+
+.sidebar-update {
+    background-color: rgb(39, 39, 39) !important;
+    border: none !important;
+    border-radius: 5px !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    padding: 10px 20px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: calc(100% - 40px) !important;
+    margin: 0 !important;
+    transition: all 0.3s ease !important;
+    font-size: 14px !important;
+}
+
+.sidebar-update:hover {
+    background-color: #da681c !important;
+}
+
+.sidebar-update:disabled {
+    background-color: rgb(60, 60, 60) !important;
+    cursor: not-allowed !important;
 }

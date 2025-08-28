@@ -834,8 +834,8 @@ function setupUpdate() {
   
   btn.onclick = async () => {
     btn.disabled = true;
-    btn.innerHTML = '⏳';
-    btn.title = 'Vérification en cours...';
+    btn.innerHTML = '⏳ Checking...';
+    btn.title = 'Checking for updates...';
     
     try {
       await window.require('electron').ipcRenderer.invoke('check-for-updates');
@@ -844,14 +844,14 @@ function setupUpdate() {
       showToast('Erreur lors de la vérification des mises à jour');
     } finally {
       btn.disabled = false;
-      btn.innerHTML = '🔄';
-      btn.title = 'Vérifier les mises à jour';
+      btn.innerHTML = '🔄 Check for Updates';
+      btn.title = 'Check for updates';
     }
   };
   
   // Ajouter la version actuelle en tooltip
   window.require('electron').ipcRenderer.invoke('get-app-version').then(version => {
-    btn.title = `Vérifier les mises à jour (Version actuelle: ${version})`;
+    btn.title = `Check for updates (Current version: ${version})`;
   });
 }
 function updateProgress(percentage, platform, gamesFound) {

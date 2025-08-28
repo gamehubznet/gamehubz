@@ -30,27 +30,6 @@ header {
     background-color: #da681c;
 }
 
-.update {
-    background-color: rgb(39, 39, 39);
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-weight: 700;
-    font-size: 16px;
-    padding: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 5px;
-    transition: all 0.3s ease;
-    min-width: 40px;
-}
-
-.update:hover {
-    background-color: #da681c;
-    transform: rotate(180deg);
-}
 
 .listview {
     background-color: rgb(39, 39, 39);
